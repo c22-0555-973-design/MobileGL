@@ -182,8 +182,10 @@ android {
         getByName("release") {
             isDebuggable = debuggableRelease
             isMinifyEnabled = false
-            if (releaseSigningReady) {
-                signingConfig = signingConfigs.getByName("release")
+            signingConfig = if (releaseSigningReady) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
             }
         }
     }
